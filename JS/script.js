@@ -1,9 +1,21 @@
 const IMAGES = document.querySelectorAll("img");
 
+function makeSrcset(imgSrc) {
+    let markup = [];
+    let width = 400; // smallest size for images
+
+    for (let i = 0; i<5; i++) {
+        markup[i] = imgSrc + "-" + width + ".jpg " + width + "w"; // example: imageName-400.jpg 400w
+        width += 400;
+    }
+    return markup.join(); // comma separate 
+}
+
 for (let i = 0; i<IMAGES.length; i++) {
     let imgSrc = IMAGES[i].getAttribute("src");
     imgSrc = imgSrc.slice(0,-8);
-    console.log(imgSrc);
+    let srcset = makeSrcset(imgSrc);
+    console.log(srcset);
     
     let type = IMAGES[i].getAttribute("data-type");
     console.log(type);
